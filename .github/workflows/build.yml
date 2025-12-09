@@ -52,21 +52,10 @@ jobs:
       run: |
         make -C ${app_id}/build -j$(getconf _NPROCESSORS_ONLN)
         
-    - name: Package addon (absolutely final)
+    - name: Package addon
       run: |
         cd ${{ github.workspace }}/xbmc/addons
-        
-        # 强制用最靠谱的方式提取版本号（已防所有注入）
-        VERSION=$(xmlstarlet sel -t -v "/addon/@version" pvr.iptvsimple/addon.xml)
-        echo "Version = $VERSION"
-        
-        # 直接写死文件名也行，但我们还是用变量
-        zip -r "pvr.iptvsimple-${VERSION}.zip" pvr.iptvsimple/
-        
-        # 验证生成的文件
-        echo "=== Final generated file ==="
-        ls -lh pvr.iptvsimple-*.zip
-
+        zip -r pvr.iptvsimple-${{ env.app_id }}.zip pvr.iptvsimple/
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:

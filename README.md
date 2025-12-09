@@ -18,7 +18,7 @@ The most common inputstreams for live/catchup streams are:
    * `Timeshifting mode` will buffer the stream from the point playback began allowing seeking to any time since then. This inputstream and mode will be selected by default for any HTTP/UDP streams.
    * `Catchup mode` extends the default catchup functionality in IPTV Simple by allowing timeshifting to any time within the catchup/archive window allowed by the stream provider. For example, if a provider supports a 5 days catchup window the guide/channel menu can be used to jump to any point and traverse channels all while constantly playing back the channel like it's live TV.
 
-The contents of this README.md file are as follows:
+The contents of this README.md file are as  follows:
 
 1. [Build instructions](#build-instructions)
 2. [Support links](#support-links)

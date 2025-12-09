@@ -52,11 +52,14 @@ jobs:
       run: |
         make -C ${app_id}/build -j$(getconf _NPROCESSORS_ONLN)
         
+    - name: Package addon
+      run: |
+        cd ${{ github.workspace }}/xbmc/addons
+        zip -r pvr.iptvsimple-${{ env.app_id }}.zip pvr.iptvsimple/
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.name }}
-        path: |
-          ${{ github.workspace }}/xbmc/addons/pvr.iptvsimple/pvr.iptvsimple-*.zip
-          ${{ github.workspace }}/xbmc/addons/pvr.iptvsimple/*/pvr.iptvsimple-*.zip
+        path: ${{ github.workspace }}/xbmc/addons/pvr.iptvsimple-*.zip
         if-no-files-found: error

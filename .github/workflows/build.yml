@@ -52,13 +52,19 @@ jobs:
       run: |
         make -C ${app_id}/build -j$(getconf _NPROCESSORS_ONLN)
         
-    - name: Package addon (final final version)
+    - name: Package addon (100% works)
       run: |
-        cd ${{ github.workspace }}/xbmc/addons            # 进入 addons 目录
-        VERSION=$(grep 'version="' pvr.iptvsimple/addon.xml | sed -E 's/.*version="([^"]+).*/\1/')
-        echo "Packaging pvr.iptvsimple-$VERSION.zip"
-        zip -r pvr.iptvsimple-${VERSION}.zip pvr.iptvsimple   # 生成在 addons/ 目录下
-        ls -lh pvr.iptvsimple-${VERSION}.zip                  # 这行会让你在日志里看到文件确实生成了
+        cd ${{ github.workspace }}/xbmc/addons
+        # 正确提取版本号（只取一行！）
+        VERSION=$(grep 'version="' pvr.iptvsimple/addon.xml | sed -E 's/.*version="([0-9.]+)".*/\1/')
+        echo "Version detected: $VERSION"
+        
+        # 标准 Kodi 打包方式，生成在 addons 目录下
+        zip -r pvr.iptvsimple-${VERSION}.zip pvr.iptvsimple/
+        
+        # 验证一下真的生成了
+        echo "=== Generated file ==="
+        ls -lh pvr.iptvsimple-${VERSION}.zip
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4

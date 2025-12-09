@@ -5,7 +5,7 @@
 
 # IPTV Simple PVR
 
-IPTV Live TV and Radio PVR client addon for [Kodi](https://kodi.tv) with support for both Gzip and XZ compression of XMLTV. Multiple pairs of M3U/XML files are supported via Kodi PVR since Kodi 20 (Nexus). Supports catchup/archive streams if supported by the IPTV provider as well as streams from Kodi video add-ons.
+IPTV Live TV  and Radio PVR client addon for [Kodi](https://kodi.tv) with support for both Gzip and XZ compression of XMLTV. Multiple pairs of M3U/XML files are supported via Kodi PVR since Kodi 20 (Nexus). Supports catchup/archive streams if supported by the IPTV provider as well as streams from Kodi video add-ons.
 
 To use multiple pairs of M3U/XML files simply visit the add-ons settings under `Configure`, and choose new `Add add-on configuration`.
 
